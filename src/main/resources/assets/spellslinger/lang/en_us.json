@@ -1,0 +1,19 @@
+{
+  "spellslinger.configuration.title": "Malum: Spellslinger Configs",
+  "spellslinger.configuration.section.spellslinger.common.toml": "Malum: Spellslinger Configs",
+  "spellslinger.configuration.section.spellslinger.common.toml.title": "Malum: Spellslinger Configs",
+  "spellslinger.modifier.spirit_shredder": "Reduces Magic Resistance on hit by -15% for 15s or next Magic Damage (up to 10 times)",
+  "effect.spellslinger.spirit_shred.description": "Increases Magic Damage taken by 10% per level.",
+  "effect.spellslinger.spirit_shred": "Spirit Shred",
+  "item.spellslinger.soulshot_modifier": "Soulshot Modifier",
+  "item.spellslinger.spirit_shredder_modifier": "Spirit Shredder Modifier",
+  "spellslinger.modifier.soulshot.damage": "+2 Magic damage",
+  "spellslinger.modifier.soulshot.damage_debuff": "-15% Damage",
+  "spellslinger.modifier.soulshot.spirit_collection": "Enables spirit collection",
+  "spellslinger.modifier.spirit_shredder.debuff": "-15% Reload speed",
+  "spellslinger.curio.ammo_belt": "+Spirit Collection Reloads Guns",
+  "item.spellslinger.ammo_belt": "Belt of Ammoweaving",
+  "item.spellslinger.mystic_reverb_necklace": "Necklace of Mystic Reverb",
+  "spellslinger.curio.mystic_reverb_necklace": "+Spirit Collection Echoes 10% of Bullet Damage To Hit Targets",
+  "spellslinger.subtitle.mystic_reverb": "Damage Echoes"
+}

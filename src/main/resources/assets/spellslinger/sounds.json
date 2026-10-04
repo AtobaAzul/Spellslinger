@@ -1,0 +1,11 @@
+{
+  "mystic_reverb": {
+    "sounds": [
+      {
+        "name": "spellslinger:curio/mystic_reverb",
+        "volume": 0.5
+      }
+    ],
+    "subtitle": "spellslinger.subtitle.mystic_reverb"
+  }
+}
