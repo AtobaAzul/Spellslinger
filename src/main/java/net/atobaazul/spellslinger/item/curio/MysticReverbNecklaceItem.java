@@ -2,6 +2,7 @@ package net.atobaazul.spellslinger.item.curio;
 
 import com.sammy.malum.common.block.ether.EtherBlockEntity;
 import com.sammy.malum.common.item.IMalumEventResponder;
+import com.sammy.malum.common.item.IVoidItem;
 import com.sammy.malum.common.item.curiosities.curios.MalumCurioItem;
 import com.sammy.malum.common.item.curiosities.weapons.staff.HexStaffItem;
 import com.sammy.malum.core.systems.events.CollectSpiritEvent;
@@ -44,7 +45,7 @@ import java.util.function.Consumer;
 import static net.atobaazul.spellslinger.registry.SpellslingerDataAttachments.MYSTIC_REVERB_DURATION;
 import static net.atobaazul.spellslinger.registry.SpellslingerDataAttachments.MYSTIC_REVERB_INCOMING_DAMAGE;
 
-public class MysticReverbNecklaceItem extends MalumCurioItem implements IMalumEventResponder {
+public class MysticReverbNecklaceItem extends MalumCurioItem implements IMalumEventResponder, IVoidItem {
     public MysticReverbNecklaceItem(Properties properties, MalumTrinketType type) {
         super(properties, type);
     }
@@ -67,10 +68,8 @@ public class MysticReverbNecklaceItem extends MalumCurioItem implements IMalumEv
                 float incomingDamage = entity.getData(MYSTIC_REVERB_INCOMING_DAMAGE);
 
                 if (incomingDamage > 0) {
-                    boolean _hurt = entity.hurt(DamageTypeHelper.create(serverLevel, DamageTypes.MAGIC, player, player), incomingDamage);
+                    boolean _hurt = entity.hurt(DamageTypeHelper.create(serverLevel, DamageTypes.MAGIC, player, player), (float) (incomingDamage*arcaneResonance));
                     if (_hurt) hurt = true;
-
-
                 }
             }
 

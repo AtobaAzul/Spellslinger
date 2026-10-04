@@ -44,10 +44,9 @@ public class AmmoBeltItem extends MalumCurioItem implements IMalumEventResponder
                 for (ItemStack stack : player.getAllSlots()) {
                     if (stack.getItem() instanceof GunItem gunItem) {
                         int missing = GunItem.getMagazine(stack).missing(gunItem.magazineCapacity());
-                        MagazineContents magazine = GunItem.getMagazine(stack);
 
                         if (missing > 0) {
-                            GunplayManager.attemptFinishReload(player, stack, 1);
+                            GunplayManager.attemptFinishReload(player, stack, (int) Math.min(Math.floor(arcaneResonance), missing));
 
                             //we need to cancel reload animation if it is happening.
                             ReloadState state = ReloadState.get(stack);

@@ -10,6 +10,6 @@ import team.lodestar.lodestone.registry.common.LodestoneAttributes;
 public class SpiritShredEffect extends MobEffect {
     public SpiritShredEffect() {
         super(MobEffectCategory.HARMFUL, ColorHelper.getColor(115, 59, 204));
-        addAttributeModifier(LodestoneAttributes.MAGIC_RESISTANCE, Spellslinger.id("spirit_shred"), -0.15f, AttributeModifier.Operation.ADD_VALUE);
+        addAttributeModifier(LodestoneAttributes.MAGIC_RESISTANCE, Spellslinger.id("spirit_shred"), -0.1f, AttributeModifier.Operation.ADD_VALUE);
     }
 }
