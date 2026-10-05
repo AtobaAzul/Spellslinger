@@ -11,11 +11,11 @@
   "spellslinger.modifier.soulshot.damage_debuff": "-15% Damage",
   "spellslinger.modifier.soulshot.spirit_collection": "Enables spirit collection",
   "spellslinger.modifier.spirit_shredder.debuff": "-15% Reload speed",
-  "spellslinger.curio.ammo_belt": "+Spirit Collection Reloads Guns",
-  "item.spellslinger.ammo_belt": "Belt of Ammoweaving",
+  "spellslinger.curio.bottomless_ammo_belt": "+Spirit Collection Reloads Guns",
+  "item.spellslinger.bottomless_ammo_belt": "Belt of Bottomless Ammo",
   "item.spellslinger.mystic_reverb_necklace": "Necklace of Mystic Reverb",
-  "spellslinger.curio.mystic_reverb_necklace": "+Spirit Collection Echoes 10% of Bullet Damage To Hit Targets",
-  "spellslinger.subtitle.mystic_reverb": "Damage Echoes",
+  "spellslinger.curio.mystic_reverb_necklace": "+Spirit Collection Echoes 50% of the Last Bullet Damage To Hit Targets As Magic Damage",
+  "spellslinger.subtitle.mystic_reverb": "A Bullet Echoes",
   "spellslinger.effect.geas.spellslinger": "+Gun modifiers may trigger twice",
   "spellslinger.effect.geas.spellslinger_weakness": "-50% Attack Damage",
   "spellslinger.gui.geas.pact_of_the_spellslinger": "Pact of the Spellslinger",
@@ -23,5 +23,37 @@
   "spellslinger.effect.geas.marskman": "+Increases bullet damage the longer the bullet travels.",
   "spellslinger.effect.geas.marskman_debuff": "-Reduces base gun damage",
   "spellslinger.gui.geas.pact_of_the_marksman": "Pact of the Marksman",
-  "spellslinger.gui.geas.pact_of_the_marksman.tooltip": "Ready. Aim. Fire."
+  "spellslinger.gui.geas.pact_of_the_marksman.tooltip": "Ready. Aim. Fire.",
+  "item.spellslinger.bullet_warp_belt": "Belt of Bullet Warping",
+  "spellslinger.curio.bullet_warp_belt": "+Passively Reloads Unequipped Guns",
+
+  "malum.gui.book.entry.modifier_soulshot": "Soulshot Modifier",
+  "malum.gui.book.entry.modifier_soulshot.description": "Shatter",
+  "malum.gui.book.entry.page.headline.soulshot_modifier": "Soulshot Modifier",
+  "malum.gui.book.entry.page.text.soulshot_modifier.1": "Building on top of a certain artificer's work, I've been able to make a bullet modification, coating the rounds in Soulstained Steel, allowing them to impact the soul directly.",
+
+  "malum.gui.book.entry.bullet_warp_belt": "Belt of Bullet Warping",
+  "malum.gui.book.entry.bullet_warp_belt.description": "War automata",
+  "malum.gui.book.entry.page.headline.bullet_warp_belt": "Belt of Bullet Warping",
+  "malum.gui.book.entry.page.text.bullet_warp_belt.1": "Utilizing Warp Flux's properties, and a bit of creative artificing, this belt slowly teleports ammunition I'm holding to load any guns I'm carrying.",
+
+  "malum.gui.book.entry.void.mystic_reverb_necklace": "Necklace of Mystic Reverb",
+  "malum.gui.book.entry.void.mystic_reverb_necklace.description": "Echo of destruction",
+  "malum.gui.book.entry.page.headline.void.mystic_reverb_necklace": "Necklace of Mystic Reverb",
+  "malum.gui.book.entry.page.text.void.mystic_reverb_necklace.1": "The Necklace of Mystic Reverb binds to any fired bullet, marking any hit targets. A fraction any bullet damage I dealt echoes directly into said target's soul whenever I collect a spirit crystal",
+
+  "malum.gui.book.entry.void.modifier_spirit_shredder": "Spirit Shredder Modifier",
+  "malum.gui.book.entry.void.modifier_spirit_shredder.description": "Weaken and exploit",
+  "malum.gui.book.entry.page.headline.void.modifier_spirit_shredder": "Spirit Shredder Modifier",
+  "malum.gui.book.entry.page.text.void.modifier_spirit_shredder.1": "This modifier coats bullets in an unnatural flame, scorching the target's soul, weakening it to any direct attacks, increasing incoming magic damage. This has the unfortunate side-effect of making the bullets... awkward to hold.",
+
+  "malum.gui.book.entry.pact_of_the_marksman": "Pact of the Marksman",
+  "malum.gui.book.entry.pact_of_the_marksman.description": "To be professional",
+  "spellslinger.gui.geas.pact_of_the_marksman.pros": "Aim true and slay your foes with precision and poise.\n-Increases gun damage the further the target is, starting at 20 blocks",
+  "spellslinger.gui.geas.pact_of_the_marksman.cons": "Personal space is valuable.\n-Decreases gun damage by half if the target is within 20 blocks",
+
+  "malum.gui.book.entry.pact_of_the_spellslinger": "Pact of the Artificer",
+  "malum.gui.book.entry.pact_of_the_spellslinger.description": "To scorch the earth",
+  "spellslinger.gui.geas.pact_of_the_spellslinger.pros": "Attune to your gun and let it speak for you.\n- Gun modifiers have a chance to be applied twice",
+  "spellslinger.gui.geas.pact_of_the_spellslinger.cons": "Live by and for the gun.\n-Halved melee damage\n-Halved staff charge recovery rate"
 }

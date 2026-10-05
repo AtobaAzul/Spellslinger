@@ -64,12 +64,17 @@ public class MysticReverbNecklaceItem extends MalumCurioItem implements IMalumEv
         if (collector.level() instanceof ServerLevel serverLevel && collector instanceof Player player) {
             List<LivingEntity> entities = serverLevel.getEntities(EntityTypeTest.forClass(LivingEntity.class), new AABB(player.blockPosition()).inflate(24), entity -> entity.getData(MYSTIC_REVERB_DURATION) > 0);
             for (LivingEntity entity : entities) {
-                //double-checking, realistically this should never be 0.
                 float incomingDamage = entity.getData(MYSTIC_REVERB_INCOMING_DAMAGE);
 
+                //double-checking, realistically this should never be 0 though
                 if (incomingDamage > 0) {
+                    int oldHurtTime = entity.hurtTime;
+                    entity.hurtTime = 0;
                     boolean _hurt = entity.hurt(DamageTypeHelper.create(serverLevel, DamageTypes.MAGIC, player, player), (float) (incomingDamage*arcaneResonance));
-                    if (_hurt) hurt = true;
+                    entity.hurtTime = 0;
+                    if (_hurt) {
+                        hurt = oldHurtTime <= 0;
+                    };
                 }
             }
 

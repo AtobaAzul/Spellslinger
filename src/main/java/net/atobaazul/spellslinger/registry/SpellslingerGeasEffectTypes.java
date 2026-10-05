@@ -13,6 +13,6 @@ import static com.sammy.malum.registry.common.magic.MalumSpiritTypes.*;
 public class SpellslingerGeasEffectTypes {
     public static final DeferredGeasTypes GEAS_TYPES = DeferredGeasTypes.create(Spellslinger.MODID);
 
-    public static final GeasHolder<GeasEffectType> PACT_OF_THE_SPELLSLINGER = GEAS_TYPES.register("pact_of_the_spellslinger", () -> new GeasEffectType(SpellslingerGeas::new, INFERNAL_SPIRIT, ARCANE_SPIRIT));
+    public static final GeasHolder<GeasEffectType> PACT_OF_THE_SPELLSLINGER = GEAS_TYPES.register("pact_of_the_spellslinger", () -> new GeasEffectType(SpellslingerGeas::new, INFERNAL_SPIRIT, ARCANE_SPIRIT, ELDRITCH_SPIRIT));
     public static final GeasHolder<GeasEffectType> PACT_OF_THE_MARKSMAN = GEAS_TYPES.register("pact_of_the_marksman", () -> new GeasEffectType(MarksmanGeas::new, AERIAL_SPIRIT, INFERNAL_SPIRIT));
 }

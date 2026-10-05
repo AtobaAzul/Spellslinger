@@ -1,0 +1,47 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraInputs": [
+    {
+      "count": 12,
+      "item": "malum:null_slate"
+    },
+    {
+      "count": 2,
+      "item": "minecraft:echo_shard"
+    },
+    {
+      "count": 8,
+      "item": "malum:mnemonic_fragment"
+    },
+    {
+      "count": 2,
+      "item": "malum:warp_flux"
+    }
+  ],
+  "input": {
+    "count": 1,
+    "item": "malum:necklace_of_the_mystic_mirror"
+  },
+  "result": {
+    "count": 1,
+    "id": "spellslinger:mystic_reverb_necklace"
+  },
+  "spirits": [
+    {
+      "type": "malum:wicked",
+      "count": 32
+    },
+    {
+      "type": "malum:arcane",
+      "count": 32
+    },
+    {
+      "type": "malum:infernal",
+      "count": 32
+    },
+    {
+      "type": "malum:eldritch",
+      "count": 32
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraInputs": [
+    {
+      "count": 8,
+      "item": "malum:alchemical_calx"
+    },
+    {
+      "count": 1,
+      "item": "irons_artifice:clockwork_components"
+    },
+    {
+      "count": 2,
+      "item": "malum:warp_flux"
+    }
+  ],
+  "input": {
+    "count": 1,
+    "item": "malum:gilded_belt"
+  },
+  "result": {
+    "count": 1,
+    "id": "spellslinger:bullet_warp_belt"
+  },
+  "spirits": [
+    {
+      "type": "malum:arcane",
+      "count": 8
+    },
+    {
+      "type": "malum:infernal",
+      "count": 8
+    },
+    {
+      "type": "malum:eldritch",
+      "count": 2
+    }
+  ]
+}

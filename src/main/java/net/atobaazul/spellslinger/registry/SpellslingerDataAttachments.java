@@ -33,8 +33,15 @@ public class SpellslingerDataAttachments {
             () -> AttachmentType.builder(() -> 0).serialize(Codec.INT).build()
     );
 
+    public static final Supplier<AttachmentType<Integer>> AMMO_WARP_TIMER =  ATTACHMENT_TYPES.register(
+            "ammo_warp_timer",
+            () -> AttachmentType.builder(() -> 40).serialize(Codec.INT).build()
+    );
+
     public static final Supplier<AttachmentType<Float>> MYSTIC_REVERB_INCOMING_DAMAGE =  ATTACHMENT_TYPES.register(
             "mystic_reverb_incoming_damage",
             () -> AttachmentType.builder(() -> 0.0f).serialize(Codec.FLOAT).sync(ByteBufCodecs.FLOAT).build()
     );
+
+
 }

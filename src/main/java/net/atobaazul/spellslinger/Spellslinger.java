@@ -4,34 +4,44 @@ import com.mojang.logging.LogUtils;
 import com.sammy.malum.core.handlers.GeasEffectHandler;
 import com.sammy.malum.core.systems.geas.GeasEffectType;
 import com.sammy.malum.registry.common.MalumAttachmentTypes;
-import com.sammy.malum.registry.common.MalumAttributes;
 import com.sammy.malum.registry.common.MalumCreativeTabs;
 import com.sammy.malum.registry.common.MalumParticles;
 import com.sammy.malum.registry.common.magic.MalumSpiritTypes;
 import io.redspace.irons_artifice.IronsArtifice;
 import io.redspace.irons_artifice.api.ComposeShotEvent;
+import io.redspace.irons_artifice.api.GunAnimations;
+import io.redspace.irons_artifice.data.ParticleStack;
+import io.redspace.irons_artifice.data.ReloadResult;
 import io.redspace.irons_artifice.data.ShotComponents;
 import io.redspace.irons_artifice.data.ValueModifier;
 import io.redspace.irons_artifice.entity.Bullet;
 import io.redspace.irons_artifice.gun.ShotProfile;
+import io.redspace.irons_artifice.item.GunItem;
+import io.redspace.irons_artifice.item.GunplayManager;
+import io.redspace.irons_artifice.item.ReloadState;
 import io.redspace.irons_artifice.menu.GunContainer;
 import io.redspace.irons_artifice.modifier.ModifierItem;
 import io.redspace.irons_artifice.modifier.PostHitEffect;
+import io.redspace.irons_artifice.network.packets.ClientboundGunAnimationPacket;
 import io.redspace.irons_artifice.registry.ItemRegistry;
 import net.atobaazul.spellslinger.geas.MarksmanGeas;
 import net.atobaazul.spellslinger.geas.SpellslingerGeas;
 import net.atobaazul.spellslinger.modifier.on_hit_handlers.SoulshotOnHit;
 import net.atobaazul.spellslinger.registry.*;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.IEventBus;
@@ -44,8 +54,11 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.slf4j.Logger;
+import software.bernie.geckolib.animatable.GeoItem;
 import team.lodestar.lodestone.handlers.LodestoneRenderHandler;
 import team.lodestar.lodestone.helpers.DamageTypeHelper;
 import team.lodestar.lodestone.helpers.RandomHelper;
@@ -57,6 +70,7 @@ import team.lodestar.lodestone.systems.particle.data.GenericParticleData;
 import team.lodestar.lodestone.systems.particle.data.color.ColorParticleData;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import java.util.List;
 import java.util.Optional;
@@ -91,6 +105,7 @@ public class Spellslinger {
     public void onServerStarting(ServerStartingEvent event) {
         LOGGER.info("HELLO from server starting");
     }
+
 
     @SubscribeEvent
     public void onEntityHurt(LivingDamageEvent.Post event) {
@@ -173,6 +188,15 @@ public class Spellslinger {
         }
     }
 
+
+    private boolean isCurioEquipped(Player player, Item targetItem) {
+        Optional<ICuriosItemHandler> curiosInventory = CuriosApi.getCuriosInventory(player);
+        return curiosInventory.map(iCuriosItemHandler -> iCuriosItemHandler.findCurios(targetItem).stream().anyMatch(slotResult -> {
+            ItemStack stack = slotResult.stack();
+            return !stack.isEmpty();
+        })).orElse(false);
+    }
+
     @SubscribeEvent
     public void composeShot(ComposeShotEvent event) {
         ShotProfile profile = event.getShotProfile();
@@ -197,6 +221,12 @@ public class Spellslinger {
         if (marksmanGeas instanceof MarksmanGeas) {
             profile.components().modifyValue(ShotComponents.DAMAGE, new ValueModifier(-0.5, ValueModifier.Operation.MULTIPLY_TOTAL, ValueModifier.Type.HARMFUL));
         }
+        if (shooter instanceof Player player) {
+            if (isCurioEquipped(player, MYSTIC_REVERB_NECKLACE.get())) {
+                profile.components().getOrCreate(ShotComponents.PARTICLE_TRAIL).addAccent(new ParticleStack.ParticleAccent(ParticleTypes.WITCH, 0.5));
+            }
+
+        }
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
@@ -210,8 +240,47 @@ public class Spellslinger {
             event.insertAfter(ItemRegistry.BLOODLETTING_TIP_MODIFIER.toStack(), SpellslingerItems.SOULSHOT_MODIFIER.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.insertAfter(ItemRegistry.BLOODLETTING_TIP_MODIFIER.toStack(), SpellslingerItems.SPIRIT_SHREDDER_MODIFIER.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
-            event.insertAfter(ItemRegistry.TRICORNE_HAT.toStack(), SpellslingerItems.AMMO_BELT.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(ItemRegistry.TRICORNE_HAT.toStack(), SpellslingerItems.BOTTOMLESS_AMMO_BELT.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+            event.insertAfter(ItemRegistry.TRICORNE_HAT.toStack(), SpellslingerItems.BULLET_WARP_BELT.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
             event.insertAfter(ItemRegistry.TRICORNE_HAT.toStack(), MYSTIC_REVERB_NECKLACE.toStack(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        }
+    }
+
+    @SubscribeEvent
+    private void onPlayerTick(PlayerTickEvent.Post event) {
+        Player player = event.getEntity();
+        Level level = player.level();
+
+        if (player.level() instanceof ServerLevel serverLevel) {
+            boolean equipped = isCurioEquipped(player, SpellslingerItems.BULLET_WARP_BELT.get());
+
+            if (equipped) {
+                int timer = player.getData(AMMO_WARP_TIMER);
+
+                timer -= 1;
+                player.setData(AMMO_WARP_TIMER, timer);
+
+                if (timer <= 0) {
+                    player.setData(AMMO_WARP_TIMER, 40);
+                    for (ItemStack item : player.getInventory().items) {
+                        if (!item.isEmpty() && item.getItem() instanceof GunItem gunItem && player.getMainHandItem() != item) {
+                            ReloadResult result = GunplayManager.attemptFinishReload(player, item, 1);
+                            if (result == ReloadResult.FINISHED_RELOAD) {
+                                GunItem.playReloadFeedback(level, player, result);
+                                ReloadState.remove(item);
+
+                                ClientboundGunAnimationPacket packet = new ClientboundGunAnimationPacket(player.getId(), GeoItem.getOrAssignId(item, serverLevel), item == player.getMainHandItem() ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND, GunAnimations.IDLE, 2, 1, 0, 0);
+                                PacketDistributor.sendToPlayersTrackingEntityAndSelf(player, packet);
+                                break;
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (player.getData(AMMO_WARP_TIMER) < 40) {
+                    player.setData(AMMO_WARP_TIMER, 40);
+                }
+            }
         }
     }
 }

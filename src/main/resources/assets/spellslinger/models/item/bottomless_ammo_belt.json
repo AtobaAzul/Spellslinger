@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spellslinger:item/ammo_belt"
+    "layer0": "spellslinger:item/bottomless_ammo_belt"
   }
 }

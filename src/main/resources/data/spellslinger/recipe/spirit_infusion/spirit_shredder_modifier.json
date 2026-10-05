@@ -1,0 +1,39 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraInputs": [
+    {
+      "count": 16,
+      "item": "malum:void_salts"
+    },
+    {
+      "count": 4,
+      "item": "malum:paracausal_flame"
+    }
+  ],
+  "input": {
+    "count": 4,
+    "item": "malum:malignant_lead"
+  },
+  "result": {
+    "count": 1,
+    "id": "spellslinger:spirit_shredder_modifier"
+  },
+  "spirits": [
+    {
+      "type": "malum:wicked",
+      "count": 32
+    },
+    {
+      "type": "malum:eldritch",
+      "count": 16
+    },
+    {
+      "type": "malum:infernal",
+      "count": 32
+    },
+    {
+      "type": "malum:arcane",
+      "count": 12
+    }
+  ]
+}

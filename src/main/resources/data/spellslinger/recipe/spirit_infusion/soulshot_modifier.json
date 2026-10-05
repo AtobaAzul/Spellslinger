@@ -1,0 +1,35 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraInputs": [
+    {
+      "count": 8,
+      "item": "irons_artifice:blackpowder"
+    },
+    {
+      "count": 3,
+      "item": "malum:soul_stained_steel_ingot"
+    }
+  ],
+  "input": {
+    "count": 1,
+    "item": "malum:block_of_soul_stained_steel"
+  },
+  "result": {
+    "count": 1,
+    "id": "spellslinger:soulshot_modifier"
+  },
+  "spirits": [
+    {
+      "type": "malum:wicked",
+      "count": 16
+    },
+    {
+      "type": "malum:earthen",
+      "count": 8
+    },
+    {
+      "type": "malum:arcane",
+      "count": 12
+    }
+  ]
+}

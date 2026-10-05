@@ -1,0 +1,47 @@
+{
+  "type": "malum:spirit_infusion",
+  "extraInputs": [
+    {
+      "count": 32,
+      "item": "malum:void_salts"
+    },
+    {
+      "count": 1,
+      "item": "malum:fused_consciousness"
+    },
+    {
+      "count": 8,
+      "item": "malum:auric_embers"
+    },
+    {
+      "count": 2,
+      "item": "malum:malignant_pewter_plating"
+    }
+  ],
+  "input": {
+    "count": 1,
+    "item": "spellslinger:bullet_warp_belt"
+  },
+  "result": {
+    "count": 1,
+    "id": "spellslinger:bottomless_ammo_belt"
+  },
+  "spirits": [
+    {
+      "type": "malum:earthen",
+      "count": 16
+    },
+    {
+      "type": "malum:arcane",
+      "count": 32
+    },
+    {
+      "type": "malum:infernal",
+      "count": 48
+    },
+    {
+      "type": "malum:eldritch",
+      "count": 32
+    }
+  ]
+}

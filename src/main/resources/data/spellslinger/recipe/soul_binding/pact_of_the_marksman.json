@@ -1,0 +1,41 @@
+{
+  "type": "malum:soul_binding",
+  "extraInputs": [
+    {
+      "count": 4,
+      "item": "malum:soul_stained_steel_plating"
+    },
+    {
+      "count": 16,
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "count": 8,
+      "item": "malum:hex_ash"
+    }
+  ],
+  "input": {
+    "count": 32,
+    "item": "minecraft:amethyst_shard"
+  },
+  "result": "spellslinger:pact_of_the_marksman",
+  "spirits": [
+
+    {
+      "type": "malum:wicked",
+      "count": 16
+    },
+    {
+      "type": "malum:aerial",
+      "count": 8
+    },
+    {
+      "type": "malum:earthen",
+      "count": 4
+    },
+    {
+      "type": "malum:infernal",
+      "count": 32
+    }
+  ]
+}

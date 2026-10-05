@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "spellslinger:ammo_belt"
+    "spellslinger:bottomless_ammo_belt",
+    "spellslinger:bullet_warp_belt"
   ]
 }

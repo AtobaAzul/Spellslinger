@@ -1,0 +1,44 @@
+{
+  "type": "malum:soul_binding",
+  "extraInputs": [
+    {
+      "count": 32,
+      "item": "malum:alchemical_calx"
+    },
+    {
+      "count": 16,
+      "item": "malum:auric_embers"
+    },
+    {
+      "count": 32,
+      "item": "malum:mnemonic_fragment"
+    },
+    {
+      "count": 1,
+      "item": "malum:fused_consciousness"
+    }
+  ],
+  "input": {
+    "count": 8,
+    "item": "irons_artifice:clockwork_components"
+  },
+  "result": "spellslinger:pact_of_the_spellslinger",
+  "spirits": [
+    {
+      "type": "malum:wicked",
+      "count": 48
+    },
+    {
+      "type": "malum:eldritch",
+      "count": 32
+    },
+    {
+      "type": "malum:arcane",
+      "count": 16
+    },
+    {
+      "type": "malum:infernal",
+      "count": 32
+    }
+  ]
+}
