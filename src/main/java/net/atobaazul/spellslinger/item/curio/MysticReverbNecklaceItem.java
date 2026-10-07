@@ -68,22 +68,16 @@ public class MysticReverbNecklaceItem extends MalumCurioItem implements IMalumEv
 
                 //double-checking, realistically this should never be 0 though
                 if (incomingDamage > 0) {
-                    int oldHurtTime = entity.hurtTime;
-                    entity.hurtTime = 0;
-                    boolean _hurt = entity.hurt(DamageTypeHelper.create(serverLevel, DamageTypes.MAGIC, player, player), (float) (incomingDamage*arcaneResonance));
-                    entity.hurtTime = 0;
-                    if (_hurt) {
-                        hurt = oldHurtTime <= 0;
-                    };
+                    entity.invulnerableTime = 0;
+                    hurt = entity.hurt(DamageTypeHelper.create(serverLevel, DamageTypes.MAGIC, player, player), (float) (incomingDamage*arcaneResonance));
+                    entity.invulnerableTime = 0;
                 }
             }
 
             if (hurt) {
                 float pitch = Mth.lerp(serverLevel.getRandom().nextFloat(), 0.8f, 1.2f);
-                float volume = Mth.lerp(serverLevel.getRandom().nextFloat(), 0.6f, 1f);
+                float volume = Mth.lerp(serverLevel.getRandom().nextFloat(), 0.6f, 0.8f);
                 serverLevel.playSound(null, collector.blockPosition(), SpellslingerSoundEvents.MYSTIC_REVERB.get(), SoundSource.PLAYERS, volume, pitch);
-
-
             }
         }
     }

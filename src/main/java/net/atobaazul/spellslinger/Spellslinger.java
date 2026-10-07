@@ -22,6 +22,7 @@ import io.redspace.irons_artifice.item.ReloadState;
 import io.redspace.irons_artifice.menu.GunContainer;
 import io.redspace.irons_artifice.modifier.ModifierItem;
 import io.redspace.irons_artifice.modifier.PostHitEffect;
+import io.redspace.irons_artifice.modifier.modifiers.FrozenJacketModifier;
 import io.redspace.irons_artifice.network.packets.ClientboundGunAnimationPacket;
 import io.redspace.irons_artifice.registry.ItemRegistry;
 import net.atobaazul.spellslinger.geas.MarksmanGeas;
@@ -94,18 +95,11 @@ public class Spellslinger {
         SpellslingerGeasEffectTypes.GEAS_TYPES.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
-
     }
 
     public static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
-
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        LOGGER.info("HELLO from server starting");
-    }
-
 
     @SubscribeEvent
     public void onEntityHurt(LivingDamageEvent.Post event) {
@@ -151,19 +145,18 @@ public class Spellslinger {
     }
 
     @SubscribeEvent
-    public void onEntityTick(EntityTickEvent.Post event) {
+    public void onEntityTick(EntityTickEvent.Pre event) {
         Entity entity = event.getEntity();
         Level level = entity.level();
         if (entity instanceof LivingEntity living) {
-
             if (level instanceof ServerLevel serverLevel) {
                 float incomingDamage = living.getData(SpellslingerDataAttachments.INCOMING_MAGIC_DAMAGE);
 
                 if (incomingDamage > 0) {
-                    living.hurtTime = 0;
+                    living.invulnerableTime = 0;
                     living.hurt(DamageTypeHelper.create(serverLevel, DamageTypes.MAGIC, living.getLastAttacker(), living.getLastAttacker()), incomingDamage);
                     living.setData(SpellslingerDataAttachments.INCOMING_MAGIC_DAMAGE, 0f);
-                    living.hurtTime = 0;
+                    living.invulnerableTime = 0;
                 }
 
                 int reverbDuration = entity.getData(MYSTIC_REVERB_DURATION);
@@ -223,7 +216,7 @@ public class Spellslinger {
         }
         if (shooter instanceof Player player) {
             if (isCurioEquipped(player, MYSTIC_REVERB_NECKLACE.get())) {
-                profile.components().getOrCreate(ShotComponents.PARTICLE_TRAIL).addAccent(new ParticleStack.ParticleAccent(ParticleTypes.WITCH, 0.5));
+                profile.components().getOrCreate(ShotComponents.PARTICLE_TRAIL).addAccent(new ParticleStack.ParticleAccent(ParticleTypes.WITCH, 0.125));
             }
 
         }

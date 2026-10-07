@@ -74,6 +74,12 @@ public class SpellslingerClient {
                 }).addPage(new WeepingWellTextPage("void.modifier_spirit_shredder", "void.modifier_spirit_shredder.1", (Item)SpellslingerItems.SPIRIT_SHREDDER_MODIFIER.get())).addPage(SpiritInfusionPage.fromOutput((Item)SpellslingerItems.SPIRIT_SHREDDER_MODIFIER.get()));
             });
 
+            screen.addEntry("void.bottomless_ammo_belt", -4, 18, (b) -> {
+                b.configureWidget((w) -> {
+                    w.setIcon(SpellslingerItems.BOTTOMLESS_AMMO_BELT).setDesign(WidgetDesignType.TOTEMIC, WidgetDesignType.FrameType.SOULWOOD, WidgetDesignType.FillingType.PAPER);
+                }).addPage(new WeepingWellTextPage("void.bottomless_ammo_belt", "void.bottomless_ammo_belt.1", (Item)SpellslingerItems.BOTTOMLESS_AMMO_BELT.get())).addPage(SpiritInfusionPage.fromOutput((Item)SpellslingerItems.BOTTOMLESS_AMMO_BELT.get())).afterUmbralCrystal();
+            });
+
             VoidCodexEntries.addGeasEntry(voidScreen, SpellslingerGeasEffectTypes.PACT_OF_THE_SPELLSLINGER, -8, 16);
         }
     }

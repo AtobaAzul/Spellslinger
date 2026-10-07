@@ -35,7 +35,12 @@
   "malum.gui.book.entry.bullet_warp_belt": "Belt of Bullet Warping",
   "malum.gui.book.entry.bullet_warp_belt.description": "War automata",
   "malum.gui.book.entry.page.headline.bullet_warp_belt": "Belt of Bullet Warping",
-  "malum.gui.book.entry.page.text.bullet_warp_belt.1": "Utilizing Warp Flux's properties, and a bit of creative artificing, this belt slowly teleports ammunition I'm holding to load any guns I'm carrying.",
+  "malum.gui.book.entry.page.text.bullet_warp_belt.1": "Utilizing Warp Flux's properties, and a bit of creative artificing, this belt slowly teleports ammunition I'm holding to load any guns I'm carrying. For safety reasons, it can't load guns I'm currently holding.",
+
+  "malum.gui.book.entry.void.bottomless_ammo_belt": "Belt of Bottomless Ammo",
+  "malum.gui.book.entry.void.bottomless_ammo_belt.description": "Never let go of the trigger",
+  "malum.gui.book.entry.page.headline.void.bottomless_ammo_belt": "Belt of Bottomless Ammo",
+  "malum.gui.book.entry.page.text.void.bottomless_ammo_belt.1": "At first, seems like a simple direct improvement to its predecessor, however, its mechanism still eludes me.\nUsing the spirit crystals I collect, it warps bullets into any firearms I'm currently carrying, held or not.",
 
   "malum.gui.book.entry.void.mystic_reverb_necklace": "Necklace of Mystic Reverb",
   "malum.gui.book.entry.void.mystic_reverb_necklace.description": "Echo of destruction",
